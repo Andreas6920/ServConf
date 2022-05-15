@@ -3,7 +3,7 @@
         New-Item -ItemType Directory $path_install -ErrorAction SilentlyContinue | Out-Null
     
     $modules = "ServConf_HostConfigurator","ServConf_RoleConfigurator","ServConf_ADConfigurator","ServConf_ShareConfigurator"
-        $modules | % {iwr -UseBasicParsing "https://raw.githubusercontent.com/Andreas6920/ServConf/main/res/modules/$_.psm1" -OutFile $path_install\$_.psm1}
+        $modules | % {iwr -useb "https://raw.githubusercontent.com/Andreas6920/ServConf/main/res/modules/$_.psm1" -OutFile $path_install\$_.psm1}
 
     $reg_install = "HKLM:\Software\ServConf"
         If (!(Test-Path $reg_install)) {New-Item -Path $reg_install -Force | Out-Null; $modules | % {Set-ItemProperty -Path $reg_install -Name $_ -Type DWord -Value 0 | Out-Null}}
@@ -47,8 +47,8 @@ Creator: Andreas6920 | https://github.com/Andreas6920/
         # User input
         do {
             Write-Host "Choose your option:`t" -f Green -nonewline; ; ;
-            $option = Read-Host
-            Switch ($option) {
+            $selection = Read-Host
+            Switch ($selection) {
 
                 1 {    Import-Module "C:\Program Files\WindowsPowerShell\Modules\ServConf\ServConf_HostConfigurator"    }
                 2 {    Import-Module "C:\Program Files\WindowsPowerShell\Modules\ServConf\ServConf_RoleConfigurator"    }
@@ -57,4 +57,4 @@ Creator: Andreas6920 | https://github.com/Andreas6920/
                 0 {                                         EXIT                                                        }
            
             }}
-        while ($option -ne 0 )
+        while ($selection -ne 0 )
