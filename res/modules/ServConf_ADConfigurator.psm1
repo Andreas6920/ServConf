@@ -49,7 +49,7 @@
         $csv_departments | % {if(!(Get-ADOrganizationalUnit -Filter "Name -eq '$_'")){ Write-Host "`t`t`t- Creating OU: $_" -f Yellow;New-ADOrganizationalUnit -Name  $_ -Path "OU=Departments,$toplevel_ou"}}
         Start-Sleep -s 3
 
-    # User creation
+        # User creation
 
         Write-host "`t- Opretter Brugere.." -f green 
         # enter mail domainname "facebook.com", "lego.dk" etc.
