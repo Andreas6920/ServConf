@@ -1,9 +1,9 @@
-# Prepare
+﻿# Prepare
     $path_install = "C:\Program Files\WindowsPowerShell\Modules\ServConf"
         New-Item -ItemType Directory $path_install -ErrorAction SilentlyContinue | Out-Null
     
     $modules = "ServConf_HostConfigurator","ServConf_RoleConfigurator","ServConf_ADConfigurator","ServConf_ShareConfigurator"
-        iwr -UseBasicParsing 
+        #iwr -UseBasicParsing 
 
     $reg_install = "HKLM:\Software\ServConf"
         If (!(Test-Path $reg_install)) {New-Item -Path $reg_install -Force | Out-Null; $modules | % {Set-ItemProperty -Path $reg_install -Name $_ -Type DWord -Value 0 | Out-Null}}
@@ -14,6 +14,7 @@
         #Logo
         $logo = 
 "
+
 ███████╗███████╗██████╗ ██╗   ██╗ ██████╗ ██████╗ ███╗   ██╗███████╗
 ██╔════╝██╔════╝██╔══██╗██║   ██║██╔════╝██╔═══██╗████╗  ██║██╔════╝
 ███████╗█████╗  ██████╔╝██║   ██║██║     ██║   ██║██╔██╗ ██║█████╗  
@@ -30,8 +31,7 @@ Creator: Andreas6920 | https://github.com/Andreas6920/
         if ((Get-ItemProperty -Path "HKLM:\Software\ServConf" -Name "ServConf_RoleConfigurator").ServConf_RoleConfigurator -eq 0){$menu2 = "Green"} else {$menu2 = "DarkGray"}
         if ((Get-ItemProperty -Path "HKLM:\Software\ServConf" -Name "ServConf_ADConfigurator").ServConf_ADConfigurator -eq 0){$menu3 = "Green"} else {$menu3 = "DarkGray"}
         if ((Get-ItemProperty -Path "HKLM:\Software\ServConf" -Name "ServConf_ShareConfigurator").ServConf_ShareConfigurator -eq 0){$menu4 = "Green"} else {$menu4 = "DarkGray"}
-        
-
+ 
         # Options overview
         Clear-Host
         "";
@@ -55,6 +55,5 @@ Creator: Andreas6920 | https://github.com/Andreas6920/
                 3 { Write "3" }
                 4 { Write "4" }
            
-            }
-
-        }while ($option -ne 0 )
+            }}
+        while ($option -ne 0 )
