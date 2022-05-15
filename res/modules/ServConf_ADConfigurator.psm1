@@ -39,7 +39,7 @@
 
         # Create new level 2 OU's
         Write-Host "`t`t- Creating level two OU's:" -f Green 
-        $toplevel_ou = (Get-ADOrganizationalUnit -Filter * -SearchScope OneLevel | select -First 1).DistinguishedName.replace('OU=Domain Controllers,','')
+        $toplevel_ou = (Get-ADOrganizationalUnit -Filter * -SearchScope OneLevel | ? Name -eq "Domain Controllers" | select -First 1).DistinguishedName.replace('OU=Domain Controllers,','')
         "Departments","Service Accounts" | % {if(!(Get-ADOrganizationalUnit -Filter "Name -eq '$_'")){ Write-Host "`t`t`t- Creating OU: $_" -f Yellow; New-ADOrganizationalUnit -Name  $_ -Path $toplevel_ou}}
         Start-Sleep -s 3
 
