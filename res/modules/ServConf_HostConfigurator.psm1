@@ -32,7 +32,7 @@ Do {
 Write-Host "`tYour Network Adapters:" -f yellow
 # Get network adapters
 $nic = Get-NetIPAddress -AddressFamily IPv4;"";
-foreach ($n in $nic){ $int = $n.InterfaceAlias;write-host "`t`t$int ( IP:"$n.IPAddress")" -f Yellow}; Start-Sleep -s 2"";
+foreach ($n in $nic){ $int = $n.InterfaceAlias;write-host "`t`t$int ( IP:"$n.IPAddress")" -f Yellow}; Start-Sleep -s 2;"";
 
 Write-Host "`tWould you like to change your IP? (y/n)" -nonewline -f Yellow;
 $answer = Read-Host " " 
